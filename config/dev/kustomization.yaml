@@ -12,6 +12,6 @@ patchesStrategicMerge:
 #      value: "https://host.docker.internal:9443/mutate-milvus-io-v1alpha1-milvuscluster"
 #  target:
 #    kind: Deployment
-#    name: milvus-operator-controller-manager
+#    name: milvus-operator
 #    namespace: milvus-operator
 #    labelSelector: "control-plane=controller-manager"

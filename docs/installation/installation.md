@@ -51,7 +51,7 @@ kubectl get pods -n milvus-operator
 Output:
 ```log
 NAME                                                  READY   STATUS    RESTARTS   AGE
-milvus-operator-controller-manager-698fc7dc8d-8f52d   1/1     Running   0          65s
+milvus-operator-698fc7dc8d-8f52d   1/1     Running   0          65s
 ```
 
 ## Delete operator

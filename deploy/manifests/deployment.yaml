@@ -5058,7 +5058,7 @@ metadata:
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: milvus-operator-controller-manager
+  name: milvus-operator
   namespace: milvus-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -5796,7 +5796,7 @@ roleRef:
   name: milvus-operator-leader-election-role
 subjects:
 - kind: ServiceAccount
-  name: milvus-operator-controller-manager
+  name: milvus-operator
   namespace: milvus-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -5822,7 +5822,7 @@ roleRef:
   name: milvus-operator-manager-role
 subjects:
 - kind: ServiceAccount
-  name: milvus-operator-controller-manager
+  name: milvus-operator
   namespace: milvus-operator
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -5835,7 +5835,7 @@ roleRef:
   name: milvus-operator-proxy-role
 subjects:
 - kind: ServiceAccount
-  name: milvus-operator-controller-manager
+  name: milvus-operator
   namespace: milvus-operator
 ---
 apiVersion: v1
@@ -5862,7 +5862,7 @@ kind: Service
 metadata:
   labels:
     control-plane: controller-manager
-  name: milvus-operator-controller-manager-metrics-service
+  name: milvus-operator-metrics-service
   namespace: milvus-operator
 spec:
   ports:
@@ -5889,7 +5889,7 @@ kind: Deployment
 metadata:
   labels:
     control-plane: controller-manager
-  name: milvus-operator-controller-manager
+  name: milvus-operator
   namespace: milvus-operator
 spec:
   selector:
@@ -5905,7 +5905,7 @@ spec:
         - -namespace
         - milvus-operator
         - -name
-        - milvus-operator-controller-manager
+        - milvus-operator
         - --health-probe-bind-address=:8081
         - --metrics-bind-address=127.0.0.1:8080
         - --leader-elect
@@ -5944,7 +5944,7 @@ spec:
           readOnly: true
       securityContext:
         runAsNonRoot: true
-      serviceAccountName: milvus-operator-controller-manager
+      serviceAccountName: milvus-operator
       terminationGracePeriodSeconds: 10
       volumes:
       - name: cert
@@ -5965,7 +5965,7 @@ spec:
         - -namespace
         - milvus-operator
         - -name
-        - milvus-operator-controller-manager
+        - milvus-operator
         command:
         - /checker
         image: milvusdb/milvus-operator:latest

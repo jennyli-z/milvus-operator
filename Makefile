@@ -3,7 +3,7 @@
 IMG ?= milvusdb/milvus-operator:dev-latest
 RELEASE_IMG ?= milvusdb/milvus-operator:latest
 SIT_IMG ?= milvus-operator:sit
-VERSION ?= 0.3.2
+VERSION ?= 0.3.3
 MILVUS_HELM_VERSION ?= milvus-3.0.0
 
 # Produce CRDs that work back to Kubernetes 1.11 (no version conversion)
@@ -346,6 +346,6 @@ deploy-by-manifest: sit-prepare-operator-images sit-load-operator-images sit-gen
 	kubectl apply -f ./test/test_gen.yaml
 	@echo "Waiting for the operator to be ready..."
 	kubectl -n milvus-operator wait --for=condition=complete job/milvus-operator-checker --timeout=6m
-	kubectl -n milvus-operator rollout restart deploy/milvus-operator-controller-manager
-	kubectl -n milvus-operator wait --timeout=3m --for=condition=available deployments/milvus-operator-controller-manager
+	kubectl -n milvus-operator rollout restart deploy/milvus-operator
+	kubectl -n milvus-operator wait --timeout=3m --for=condition=available deployments/milvus-operator
 	sleep 5 #wait for the service to be ready
